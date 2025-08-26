@@ -1,37 +1,65 @@
 # MDP REPRESENTATION
 
-## AIM:
-Write your aim here
+### AIM:
+To represent the elevator scheduling problem in Markov Decision Problem (MDP) form.
 
-## PROBLEM STATEMENT:
+---
 
-### Problem Description
-Write your answer here
+### PROBLEM STATEMENT:
 
-### State Space
-Write your answer here
+**Problem Description:**  
+The agent’s role is to control an elevator in a multi-floor building. The objective is to serve passenger requests efficiently while minimizing waiting time and energy consumption.
+
+---
+
+### State Space:
+
+{0,1,2} = {Elevator at Floor 0, Floor 1, Floor 2}
 
 ### Sample State
-Write your answer here
-
+{1} = {Elevator at Floor 1}
 ### Action Space
-Write your answer here
+{0,1} = {Move UP, Move DOWN}
 
 ### Sample Action
-Write your answer here
+{0} = {Move UP from current floor}
 
 ### Reward Function
-Write your answer here
+R =
++10 → if serving a passenger request
+-1 → for each move (time penalty)
+0 → if idle without request
 
 ### Graphical Representation
-Write your answer here
+<img width="468" height="581" alt="image" src="https://github.com/user-attachments/assets/f5c4f53a-f767-44b2-835a-cf5170c69e62" />
+
 
 ## PYTHON REPRESENTATION:
-Write your code here
+```
+Developed by: HIRUTHIK SUDHAKAR
+Reg no: 212223240054
+```
+```python
+P = {
+    0: { # Elevator at Floor 0
+        0: [(1.0, 1, -1, False)],   # UP → Floor 1
+        1: [(1.0, 0, 0, True)]      # DOWN invalid → stays (terminal)
+    },
+    1: { # Elevator at Floor 1
+        0: [(1.0, 2, -1, False)],   # UP → Floor 2
+        1: [(1.0, 0, -1, False)]    # DOWN → Floor 0
+    },
+    2: { # Elevator at Floor 2
+        0: [(1.0, 2, 0, True)],     # UP invalid → stays (terminal)
+        1: [(1.0, 1, -1, False)]    # DOWN → Floor 1
+    }
+}
 
+print(P)
+```
 ## OUTPUT:
-Write your Python output here
+<img width="339" height="519" alt="image" src="https://github.com/user-attachments/assets/74aa04a6-78e8-4592-be09-4e144bf4b24f" />
+
 
 ## RESULT:
-Write your output here
-
+Thus, the elevator scheduling problem is successfully represented in MDP form.
